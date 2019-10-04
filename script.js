@@ -33,32 +33,32 @@ const get_slider = (function() {
 
 
     const getPassedElem = () => {
+      ;
       const tranStep = Math.abs(transform - step) / step; // Перевод transform из % в шаги. Math.abs - т.к. transform отрицательный, отнимаем step, чтобы узнать значение перед активацией слайдера.
       const elemWindow = Math.round(wrapper_width / item_width); // Количество элементов на экране.
       const passedElem = tranStep + elemWindow; // Количество пройденных элементов в слайдере.
-      console.log(tranStep)
-      return passedElem;
+      console.log('right = '+tranStep)
+      console.log(passedElem)
+      return Math.round(passedElem);
     }
 
     const getPassedElemLeft = () => {
-      const tranStep = Math.abs(transform - step) / step;
+      const tranStep = Math.abs(transform + step) / step;
       const elemWindow = Math.round(wrapper_width / item_width); // Количество элементов на экране.
       const passedElem = tranStep + elemWindow; // Количество пройденных элементов в слайдере.
-      console.log(tranStep)
-      return passedElem;
+      console.log('left = '+tranStep)
+      return Math.round(tranStep);
     }
 
     const get_transform_slider = (direction, stepNew) => {
-      let tranStep = 0;
+
 
       if( direction === 'right' ) {
-
-
 
         if( getPassedElem() ===  items.length ) {
           slider_control_right.classList.remove('slider_control_show');
         }
-        if(getPassedElem() !==  items.length) {
+        if(getPassedElem() !==  0) {
           slider_control_left.classList.add('slider_control_show');
         }
         transform -= stepNew;
@@ -66,10 +66,10 @@ const get_slider = (function() {
 
       if( direction === 'left' ) {
 
-        if( getPassedElemLeft() ===  1 ) {
+        if( getPassedElemLeft() ===  0 ) {
           slider_control_left.classList.remove('slider_control_show');
         }
-        if( getPassedElemLeft() !==  1 ) {
+        if( getPassedElemLeft() !==  items.length ) {
           slider_control_right.classList.add('slider_control_show');
         }
         transform += stepNew;
