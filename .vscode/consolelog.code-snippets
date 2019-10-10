@@ -1,0 +1,10 @@
+{
+	"Print to console": {
+		"scope": "javascript",
+		"prefix": "c",
+		"body": [
+			"console.log('$1 = ', $1)"
+		],
+		"description": "Console.log"
+	}
+}
